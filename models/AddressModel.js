@@ -5,10 +5,15 @@ const AddressSchema = Schema({
     streetName: String,
     city: String,
     region: String,
-    postalCode: Number
+    postalCode: Number,
+    isDeleted: {type: Boolean, default: false},
+    date: {
+        type: Date,
+        default: Date()
+    }
 })
 
-const MAddress = mongoose.model('buyer', AddressSchema)
+const MAddress = mongoose.model('address', AddressSchema)
 
 module.exports = {
     MAddress

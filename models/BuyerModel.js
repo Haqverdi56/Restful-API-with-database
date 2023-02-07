@@ -6,6 +6,11 @@ const BuyerSchema = Schema({
     buyerName: String,
     phoneNumber: Number,
     buyerAddress: MAddress,
+    isDeleted: {type: Boolean, default: false},
+    date: {
+        type: Date,
+        default: Date()
+    }
 })
 
 const MBuyer = mongoose.model('buyer', BuyerSchema)

@@ -5,10 +5,15 @@ const OrdersSchema = Schema({
     streetName: String,
     city: String,
     region: String,
-    postalCode: Number
+    postalCode: Number,
+    isDeleted: {type: Boolean, default: false},
+    date: {
+        type: Date,
+        default: Date()
+    }
 })
 
-const MOrders = mongoose.model('buyer', OrdersSchema)
+const MOrders = mongoose.model('orders', OrdersSchema)
 
 module.exports = {
     MOrders
