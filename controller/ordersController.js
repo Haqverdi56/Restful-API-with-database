@@ -2,7 +2,7 @@ const { MOrders } = require("../models/OrdersModel");
 
 const ordersController = {
     getAll: (req, res) => {
-        console.log("All!!!");
+        console.log("req",  req);
         // const query=req.query
         // const limit=query.limit
         // const sorting=query.sort
@@ -12,7 +12,12 @@ const ordersController = {
         // }else if(sorting=="asc"){
         //      sort=1
         // }
-        MOrders.find({isDeleted:false}).exec((err,docs)=>{
+        MOrders.find({isDeleted:false})
+        // .limit(limit)
+        // .sort({buyerName:sort})
+        // .populate("categoryID")
+        // .populate({path:"buyerID",populate:{path:"buyerAddress"}})
+        .exec((err,docs)=>{
             if(!err){
                 res.json(docs)
             }else{
@@ -45,7 +50,7 @@ const ordersController = {
                 } else {
                     res.status(500).json(err);
                 }
-            })
+        })
     },
     delete: (req, res) => {
         let id = req.params.id;
