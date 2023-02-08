@@ -3,9 +3,14 @@ const { Schema } = mongoose;
 
 const OrdersSchema = Schema({
     streetName: String,
+    productPrice:Number,
     city: String,
     region: String,
     postalCode: Number,
+    categoryId: {
+        type: 'ObjectId',
+        ref: 'category'
+    },
     isDeleted: {type: Boolean, default: false},
     date: {
         type: Date,

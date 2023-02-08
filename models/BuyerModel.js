@@ -5,7 +5,10 @@ const { Schema } = mongoose;
 const BuyerSchema = Schema({
     buyerName: String,
     phoneNumber: Number,
-    buyerAddress: MAddress,
+    buyerAddress: {
+        type:"ObjectId",
+        ref:"address"
+    },
     isDeleted: {type: Boolean, default: false},
     date: {
         type: Date,

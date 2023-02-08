@@ -3,19 +3,11 @@ const { MOrders } = require("../models/OrdersModel");
 const ordersController = {
     getAll: (req, res) => {
         console.log("req",  req);
-        // const query=req.query
-        // const limit=query.limit
-        // const sorting=query.sort
-        // let sort
-        //  if(sorting=="decs"){
-        //      sort=-1
-        // }else if(sorting=="asc"){
-        //      sort=1
-        // }
+        const {limit,sort}=req.query
         MOrders.find({isDeleted:false})
-        // .limit(limit)
-        // .sort({buyerName:sort})
-        // .populate("categoryID")
+        .limit(limit)
+        .sort({productPrice:sort})
+        // .populate("categoryId")
         // .populate({path:"buyerID",populate:{path:"buyerAddress"}})
         .exec((err,docs)=>{
             if(!err){
