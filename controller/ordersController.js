@@ -2,14 +2,26 @@ const { MOrders } = require("../models/OrdersModel");
 
 const ordersController = {
     getAll: (req, res) => {
+        let { limit, sort, startdate, enddate}= req.query;
 
-        const {limit,sort}=req.query
+        if (!startdate) {
+            startdate = new Date(0);
+        } else {
+            startdate = new Date(startdate);
+        }
 
-        MOrders.find({isDeleted:false})
+        if (!enddate) {
+            enddate = new Date();
+        } else {
+            enddate = new Date(enddate);
+        }
+
+        console.log('date', startdate);
+        MOrders.find({isDeleted:false, date: {$gte:startdate, $lte: enddate}})
         .limit(limit)
         .sort({productPrice:sort})
-        // .populate("categoryId")
-        // .populate({path:"buyerID",populate:{path:"buyerAddress"}})
+        .populate("categoryId")
+        .populate({path:"buyerId",populate:{path:"buyerAddress"}})
         .exec((err,docs)=>{
             if(!err){
                 res.json(docs)

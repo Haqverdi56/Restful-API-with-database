@@ -23,10 +23,10 @@ mongoose.connect(process.env.SECRET_KEY)
 })
 
 
-app.use('/orders',ordersRouter)
-app.use('/category',categoryRouter)
-app.use('/address',addressRouter)
-app.use('/buyer',buyerRouter)
+app.use('/api/orders',ordersRouter)
+app.use('/api/category',categoryRouter)
+app.use('/api/address',addressRouter)
+app.use('/api/buyer',buyerRouter)
 app.use('/', function(req, res) {
     res.send("Welcome my world")
 })

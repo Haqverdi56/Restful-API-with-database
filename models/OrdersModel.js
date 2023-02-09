@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const OrdersSchema = Schema({
     productName: String,
-    productPrice:Number,
+    productPrice: Number,
     productDescription: String,
     buyerId: {
         type: 'ObjectId',
@@ -14,7 +14,7 @@ const OrdersSchema = Schema({
         ref: 'category'
     },
     isDeleted: {type: Boolean, default: false},
-    orderDate: {
+    date: {
         type: Date,
         default: Date()
     }

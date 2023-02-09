@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const CategorySchema = Schema({
     categoryName: String,
-    categoryDescription: Number,
+    categoryDescription: String,
     isDeleted: {type: Boolean, default: false},
     date: {
         type: Date,
