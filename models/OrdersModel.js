@@ -2,17 +2,19 @@ const {default: mongoose} = require('mongoose');
 const { Schema } = mongoose;
 
 const OrdersSchema = Schema({
-    streetName: String,
+    productName: String,
     productPrice:Number,
-    city: String,
-    region: String,
-    postalCode: Number,
+    productDescription: String,
+    buyerId: {
+        type: 'ObjectId',
+        ref: 'buyer'
+    },
     categoryId: {
         type: 'ObjectId',
         ref: 'category'
     },
     isDeleted: {type: Boolean, default: false},
-    date: {
+    orderDate: {
         type: Date,
         default: Date()
     }

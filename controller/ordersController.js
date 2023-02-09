@@ -2,8 +2,9 @@ const { MOrders } = require("../models/OrdersModel");
 
 const ordersController = {
     getAll: (req, res) => {
-        console.log("req",  req);
+
         const {limit,sort}=req.query
+
         MOrders.find({isDeleted:false})
         .limit(limit)
         .sort({productPrice:sort})
@@ -18,11 +19,15 @@ const ordersController = {
         })
     },
     add: (req, res) => {
+        console.log(req.body);
         let newOrders=new MOrders({
-            streetName: req.body.streetName,
-            city:req.body.city,
-            region:req.body.productPrice,
-            postalCode:req.body.postalCode,
+            productName: req.body.productName,
+            productPrice:req.body.productPrice,
+            productDescription:req.body.productDescription,
+            categoryId: req.body.categoryId,
+            buyerId: req.body.buyerId,
+            isDeleted: false,
+            date: req.body.date,
         })
         newOrders.save((err,docs)=>{
             if(!err){
