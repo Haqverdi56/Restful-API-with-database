@@ -2,10 +2,12 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const { default: mongoose } = require('mongoose');
-const ordersRouter = require("./routes/ordersRouter")
-const categoryRouter = require("./routes/categoryRouter")
-const addressRouter = require("./routes/addressRouter")
-const buyerRouter = require("./routes/buyerRouter")
+
+const ordersRouter = require("./routes/ordersRouter");
+const categoryRouter = require("./routes/categoryRouter");
+const addressRouter = require("./routes/addressRouter");
+const buyerRouter = require("./routes/buyerRouter");
+const userRouter = require("./routes/userRouter")
 
 require("dotenv").config();
 
@@ -23,10 +25,12 @@ mongoose.connect(process.env.SECRET_KEY)
 })
 
 
-app.use('/api/orders',ordersRouter)
-app.use('/api/category',categoryRouter)
-app.use('/api/address',addressRouter)
-app.use('/api/buyer',buyerRouter)
+app.use('/api/orders', ordersRouter);
+app.use('/api/category', categoryRouter);
+app.use('/api/address', addressRouter);
+app.use('/api/buyer', buyerRouter);
+app.use('/auth/login', userRouter);
+
 app.use('/', function(req, res) {
     res.send("Welcome my world")
 })
